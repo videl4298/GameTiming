@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/all">
+        <file>start_button.png</file>
+        <file>quit.png</file>
+    </qresource>
+</RCC>
