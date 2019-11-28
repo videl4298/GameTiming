@@ -6,3 +6,7 @@ SOURCES += \
 
 HEADERS += \
     code/mainwindow.h
+
+RESOURCES +=
+
+RC_ICONS = data/myApp.ico
