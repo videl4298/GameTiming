@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
@@ -35,4 +36,6 @@ void MainWindow::initialiseButton(){
     QuitButton->setIcon(QIcon(":/all/quit.png"));
     QuitButton->setIconSize(QSize(125,125));
     QuitButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
+    connect(QuitButton, &QPushButton::pressed, qApp, &QApplication::quit);
 }
