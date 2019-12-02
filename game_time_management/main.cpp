@@ -5,13 +5,21 @@
 
 void setApplicationInfo();
 
+
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
 
     setApplicationInfo();
 
-//    MainWindow myMainWindow;
-//    myMainWindow.show();
+    passwordCheckerW* passCheck = new passwordCheckerW;
+    passCheck->show();
+
+    MainWindow fenetre;
+
+    // if password is correct then show the main window
+    QObject::connect(passCheck, &passwordCheckerW::validPass, passCheck, &passwordCheckerW::deleteLater);
+    QObject::connect(passCheck, &passwordCheckerW::validPass, &fenetre, &MainWindow::show);
+
 
     return app.exec();
 }
@@ -21,3 +29,4 @@ void setApplicationInfo(){
     QApplication::setOrganizationDomain("videl.com");
     QApplication::setApplicationName("Game time manager");
 }
+
