@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 
+
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -22,5 +23,7 @@ private:
     void initialiseButton();
     QPushButton *StartButton, *ChangePasswordButton, *QuitButton;
 };
+
+
 
 #endif // MAINWINDOW_H

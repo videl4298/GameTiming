@@ -37,5 +37,5 @@ void MainWindow::initialiseButton(){
     QuitButton->setIconSize(QSize(125,125));
     QuitButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
-    connect(QuitButton, &QPushButton::pressed, qApp, &QApplication::quit);
+
 }
