@@ -4,4 +4,8 @@
 
 --creer un protection par mot de passe pour quitter //done
 
---creer un fenetre pour reglagle prix et mot de passe
+--creer un fenetre pour reglagle prix et mot de passe // done
+
+--creer fenetre plein ecran
+
+--creer l'afficheur compte a rebours

@@ -8,6 +8,8 @@
 #include <QSettings>
 #include "passwordchecker.h"
 #include "code/settingwindow.h"
+#include "code/screenblocker.h"
+#include "code/timewindows.h"
 
 
 class MainWindow : public QWidget
@@ -25,6 +27,9 @@ private:
     void initialiseButton();
     /*called once*/
     QPushButton *StartButton, *ChangePasswordButton, *QuitButton;
+
+    ScreenBlocker* myScreenBlocker;
+    timeWindows* timePrinter;
 
     // prevent user from closing app without permission
     void closeEvent(QCloseEvent *event) override;

@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QMessageBox>
 
+
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     mySettings(QApplication::organizationName(), QApplication::applicationName())
 {
@@ -20,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     askPass = new passwordChecker(this);
     connect(askPass, &QDialog::accepted, qApp, &QApplication::quit);
     connect(askPass, &passwordChecker::validPass, this, &MainWindow::showSettingWindow);
+
+    myScreenBlocker = new ScreenBlocker(this);
+    timePrinter = new timeWindows(this);
+    connect(StartButton, &QPushButton::pressed, timePrinter, &QDialog::exec);
 }
 
 void MainWindow::makeLayoutReady(){
@@ -34,6 +39,7 @@ void MainWindow::initialiseButton(){
     StartButton->setIcon(QIcon(":/all/start_button.png"));
     StartButton->setIconSize(QSize(125,125));
     StartButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
 
     ChangePasswordButton = new QPushButton("MDP");
     QFont myFont = ChangePasswordButton->font();
