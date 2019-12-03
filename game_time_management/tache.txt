@@ -2,4 +2,4 @@
 
 --empêcher la fermeture du programme par alt+f4 // done
 
---creer un protection par mot de passe pour quitter
+--creer un protection par mot de passe pour quitter //done

@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QCloseEvent>
+#include <QSettings>
 #include "passwordchecker.h"
 
 
@@ -26,11 +27,20 @@ private:
     void closeEvent(QCloseEvent *event) override;
 
 
+    // manage settings
+    QSettings mySettings;
+
+    passwordChecker* askPass;
+
+
 signals:
 
 public slots:
     // ask password if user want to close the app
     void handleQuitButton();
+
+
+    void handleSettingsButton();
 };
 
 

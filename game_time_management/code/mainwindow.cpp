@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
+    mySettings(QApplication::organizationName(), QApplication::applicationName())
 {
     setWindowTitle("Gestion Temps Salle de jeux");
 
@@ -13,6 +15,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     // disable close button
     setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
+
+    // initialise password checker widgets
+    askPass = new passwordChecker(this);
+    connect(askPass, &QDialog::accepted, qApp, &QApplication::quit);
+    connect(askPass, &passwordChecker::validPass, [=]{QMessageBox::information(this, "titre", "fonctionne");});
 }
 
 void MainWindow::makeLayoutReady(){
@@ -34,6 +41,7 @@ void MainWindow::initialiseButton(){
     myFont.setPointSize(25);
     ChangePasswordButton->setFont(myFont);
     ChangePasswordButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    connect(ChangePasswordButton, &QPushButton::pressed, this, &MainWindow::handleSettingsButton);
 
     QuitButton = new QPushButton();
     QuitButton->setIcon(QIcon(":/all/quit.png"));
@@ -51,5 +59,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::handleQuitButton()
 {
+    askPass->setParam(passParam::Quit);
+    askPass->exec();
+}
 
+void MainWindow::handleSettingsButton(){
+    askPass->setParam(passParam::Settings);
+    askPass->exec();
 }

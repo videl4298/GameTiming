@@ -6,11 +6,17 @@
 QString Master::masterPassword(){return "Nambinina4298";}
 
 
-passwordChecker::passwordChecker(QWidget *parent) : QDialog(parent)
+passwordChecker::passwordChecker(QWidget *parent) : QDialog(parent),
+    mySettings(QApplication::organizationName(), QApplication::applicationName())
 {
     makeWidgetReady(); // initialise all widgets
 
     setMainLayout(); // put widgets inside a layout
+
+    connect(passwordHolder, &QLineEdit::returnPressed, this, &passwordChecker::checkPasswordValidity);
+    connect(acceptButton, &QPushButton::pressed, this, &passwordChecker::checkPasswordValidity);
+
+
 }
 
 void passwordChecker::makeWidgetReady(){
@@ -21,7 +27,7 @@ void passwordChecker::makeWidgetReady(){
     passwordHolder->setMaxLength(20);
     passwordHolder->setEchoMode(QLineEdit::Password);
 
-    acceptButton = new QPushButton("ouvrir");
+    acceptButton = new QPushButton("Ok");
 }
 
 void passwordChecker::setMainLayout(){
@@ -30,8 +36,49 @@ void passwordChecker::setMainLayout(){
     mainLayout->addWidget(acceptButton);
 }
 
+void passwordChecker::checkPasswordValidity(){
+    if(actualParam == passParam::Quit){
+        if(passwordHolder->text() == Master::masterPassword()){
+    //        emit validPass();
+            accept();
+            //return;
+        }
+
+        if(passwordHolder->text() != mySettings.value("password").toString()){
+            QMessageBox::warning(this, "erreur", "Mot de passe incorecte");
+        }else{
+    //        emit validPass();
+            accept();
+        }
+    }else if(actualParam == passParam::Settings){
+        if(passwordHolder->text() == Master::masterPassword()){
+            emit validPass();
+            close();
+            //return;
+        }
+
+        if(passwordHolder->text() != mySettings.value("password").toString()){
+            QMessageBox::warning(this, "erreur", "Mot de passe incorecte");
+        }else{
+            emit validPass();
+            close();
+        }
+    }
+}
+
+void passwordChecker::setParam(passParam const& param){
+    actualParam = param;
+}
+
+
+
+
+
+
+/* STARTUP PASS CHECKER */
+
 passwordCheckerW::passwordCheckerW() : QWidget(),
-    mySettings(QApplication::applicationName(), QApplication::organizationName())
+    mySettings(QApplication::organizationName(), QApplication::applicationName())
 {
     makeWidgetReady(); // initialise all widgets
 
