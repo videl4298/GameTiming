@@ -15,6 +15,7 @@
 
 class SettingWindow : public QDialog
 {
+    Q_OBJECT
 public:
     SettingWindow(QWidget* parent);
 
@@ -29,7 +30,10 @@ private:
 
     static constexpr int passLenght = 20;
 
+    QSettings mySettings;
 
+public slots:
+    void handleAcceptButton();
 
 };
 
