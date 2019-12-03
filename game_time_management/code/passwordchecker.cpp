@@ -16,7 +16,7 @@ passwordChecker::passwordChecker(QWidget *parent) : QDialog(parent),
     connect(passwordHolder, &QLineEdit::returnPressed, this, &passwordChecker::checkPasswordValidity);
     connect(acceptButton, &QPushButton::pressed, this, &passwordChecker::checkPasswordValidity);
 
-
+    setWindowTitle("Mot de Passe");
 }
 
 void passwordChecker::makeWidgetReady(){
@@ -24,7 +24,7 @@ void passwordChecker::makeWidgetReady(){
 
     passwordHolder = new QLineEdit;
     passwordHolder->setPlaceholderText("ici Mot de passe");
-    passwordHolder->setMaxLength(20);
+    passwordHolder->setMaxLength(passLenght);
     passwordHolder->setEchoMode(QLineEdit::Password);
 
     acceptButton = new QPushButton("Ok");
@@ -53,7 +53,7 @@ void passwordChecker::checkPasswordValidity(){
     }else if(actualParam == passParam::Settings){
         if(passwordHolder->text() == Master::masterPassword()){
             emit validPass();
-            close();
+            hide();
             //return;
         }
 
@@ -61,7 +61,7 @@ void passwordChecker::checkPasswordValidity(){
             QMessageBox::warning(this, "erreur", "Mot de passe incorecte");
         }else{
             emit validPass();
-            close();
+            hide();
         }
     }
 }
@@ -93,7 +93,7 @@ void passwordCheckerW::makeWidgetReady(){
 
     passwordHolder = new QLineEdit;
     passwordHolder->setPlaceholderText("ici Mot de passe");
-    passwordHolder->setMaxLength(20);
+    passwordHolder->setMaxLength(passLenght);
     passwordHolder->setEchoMode(QLineEdit::Password);
 
     acceptButton = new QPushButton("ouvrir");

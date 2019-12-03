@@ -3,3 +3,5 @@
 --empêcher la fermeture du programme par alt+f4 // done
 
 --creer un protection par mot de passe pour quitter //done
+
+--creer un fenetre pour reglagle prix et mot de passe

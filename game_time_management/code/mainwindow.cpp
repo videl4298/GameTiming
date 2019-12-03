@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     // initialise password checker widgets
     askPass = new passwordChecker(this);
     connect(askPass, &QDialog::accepted, qApp, &QApplication::quit);
-    connect(askPass, &passwordChecker::validPass, [=]{QMessageBox::information(this, "titre", "fonctionne");});
+    connect(askPass, &passwordChecker::validPass, this, &MainWindow::showSettingWindow);
 }
 
 void MainWindow::makeLayoutReady(){
@@ -66,4 +66,11 @@ void MainWindow::handleQuitButton()
 void MainWindow::handleSettingsButton(){
     askPass->setParam(passParam::Settings);
     askPass->exec();
+}
+
+void MainWindow::showSettingWindow(){
+    askPass->close();
+    SettingWindow mySettingWindow(this);
+    mySettingWindow.exec();
+
 }

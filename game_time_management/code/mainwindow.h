@@ -7,6 +7,7 @@
 #include <QCloseEvent>
 #include <QSettings>
 #include "passwordchecker.h"
+#include "code/settingwindow.h"
 
 
 class MainWindow : public QWidget
@@ -14,6 +15,8 @@ class MainWindow : public QWidget
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+
+
 
 private:
     QHBoxLayout *MainLayout;
@@ -41,6 +44,8 @@ public slots:
 
 
     void handleSettingsButton();
+
+    void showSettingWindow();
 };
 
 

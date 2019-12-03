@@ -20,6 +20,9 @@ enum class passParam{
     Other
 };
 
+// password lenght
+static constexpr int passLenght = 20;
+
 class passwordChecker : public QDialog
 {
 
@@ -37,6 +40,8 @@ private:
     // fucntion that run only once
     void makeWidgetReady();
     void setMainLayout(); // put all widgets inside layout
+
+
 
     //settings
     QSettings mySettings;
