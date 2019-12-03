@@ -1,5 +1,5 @@
---creer un protection par mot de passe au demarage
+--creer un protection par mot de passe au demarage // done
 
---empêcher la fermeture du programme par alt+f4
+--empêcher la fermeture du programme par alt+f4 // done
 
 --creer un protection par mot de passe pour quitter

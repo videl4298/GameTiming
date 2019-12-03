@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     makeLayoutReady();
 
     setLayout(MainLayout);
+
+    // disable close button
+    setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
 }
 
 void MainWindow::makeLayoutReady(){
@@ -36,6 +39,17 @@ void MainWindow::initialiseButton(){
     QuitButton->setIcon(QIcon(":/all/quit.png"));
     QuitButton->setIconSize(QSize(125,125));
     QuitButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    connect(QuitButton, &QPushButton::pressed, this, &MainWindow::handleQuitButton);
 
+
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    event->ignore();
+}
+
+void MainWindow::handleQuitButton()
+{
 
 }

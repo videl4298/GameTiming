@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QCloseEvent>
+#include "passwordchecker.h"
 
 
 class MainWindow : public QWidget
@@ -12,16 +14,23 @@ class MainWindow : public QWidget
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
+private:
+    QHBoxLayout *MainLayout;
+    /*called once*/
+    void makeLayoutReady();
+    void initialiseButton();
+    /*called once*/
+    QPushButton *StartButton, *ChangePasswordButton, *QuitButton;
+
+    // prevent user from closing app without permission
+    void closeEvent(QCloseEvent *event) override;
+
+
 signals:
 
 public slots:
-
-private:
-    QHBoxLayout *MainLayout;
-    void makeLayoutReady();
-
-    void initialiseButton();
-    QPushButton *StartButton, *ChangePasswordButton, *QuitButton;
+    // ask password if user want to close the app
+    void handleQuitButton();
 };
 
 
