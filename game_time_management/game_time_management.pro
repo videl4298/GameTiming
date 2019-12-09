@@ -1,6 +1,7 @@
 QT += widgets
 
 SOURCES += \
+    code/custommerinfocontainer.cpp \
     code/mainwindow.cpp \
     code/passwordchecker.cpp \
     code/screenblocker.cpp \
@@ -10,6 +11,7 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    code/custommerinfocontainer.h \
     code/mainwindow.h \
     code/passwordchecker.h \
     code/screenblocker.h \

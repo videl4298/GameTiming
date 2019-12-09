@@ -9,19 +9,19 @@ void setApplicationInfo();
 
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
-/*
-    setApplicationInfo();
 
-    passwordCheckerW* passCheck = new passwordCheckerW;
-    passCheck->show();
+//    setApplicationInfo();
 
-    MainWindow fenetre;
+//    passwordCheckerW* passCheck = new passwordCheckerW;
+//    passCheck->show();
 
-    // if password is correct then show the main window
-    QObject::connect(passCheck, &passwordCheckerW::validPass, passCheck, &passwordCheckerW::deleteLater);
-    QObject::connect(passCheck, &passwordCheckerW::validPass, &fenetre, &MainWindow::show);
+//    MainWindow fenetre;
 
-*/
+//    // if password is correct then show the main window
+//    QObject::connect(passCheck, &passwordCheckerW::validPass, passCheck, &passwordCheckerW::deleteLater);
+//    QObject::connect(passCheck, &passwordCheckerW::validPass, &fenetre, &MainWindow::show);
+
+
     TimeRecever temps(nullptr);
     temps.show();
 
