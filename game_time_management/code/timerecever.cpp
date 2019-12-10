@@ -12,6 +12,8 @@ TimeRecever::TimeRecever(QWidget* parent) : QDialog(parent)
     SetLayoutS();
 
     makeTimeBUtton();
+
+    setGeometry(0, 0, 396, 255);
 }
 
 void TimeRecever::MakeLayout()
@@ -43,6 +45,7 @@ void TimeRecever::SetLayoutS()
     RadioLayout->addWidget(TimeR);
     RadioLayout->addWidget(MoneyR);
     RadioLayout->addWidget(MoneySpin);
+
     timeLimitationLayout->addLayout(RadioLayout);
 
     isPaid->setLayout(isPaidLayout);
@@ -78,6 +81,8 @@ void TimeRecever::MakeWidget()
     MoneySpin->setMinimum(0);
     MoneySpin->setMaximum(50000);
     MoneySpin->setEnabled(false);
+    MoneySpin->setMinimumWidth(50);
+    MoneySpin->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 
     connect(TimeR, &QRadioButton::toggled, this, &TimeRecever::HandleToogleTimeToMoney);
 
@@ -100,6 +105,7 @@ void TimeRecever::makeTimeBUtton()
         add += 15;
         timeButton.push_back(new QPushButton(QString::number(add), this));
         timeButton.at(i)->setCheckable(true);
+        timeButton.at(i)->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
         timeGroupButton->addButton(timeButton.at(i));
     }
     add = 0;
@@ -121,11 +127,17 @@ void TimeRecever::makeTimeBUtton()
     HoursSpin->setMinimum(0);
     HoursSpin->setMaximum(24);
     HoursSpin->setEnabled(false);
+    HoursSpin->setMinimumWidth(50);
+    HoursSpin->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+
 
     MinSpin = new QSpinBox;
     MinSpin->setMinimum(0);
     MinSpin->setMaximum(59);
     MinSpin->setEnabled(false);
+    MinSpin->setMinimumWidth(50);
+    MinSpin->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+
 
     //connect(HoursMin, SIGNAL(toggled(bool)), this, SLOT(HandleHoursMinButton(bool)));
     connect(HoursMin, &QPushButton::toggled, this, &TimeRecever::HandleHoursMinButton);
