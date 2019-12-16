@@ -45,7 +45,10 @@ private:
 public slots:
     void HandleHoursMinButton(bool isChecked);
     void HandleToogleTimeToMoney(bool isTime);
-    custommerInfoContainer* generateResult();
+    void generateResult();
+
+signals:
+    void resultReady(custommerInfoContainer info);
 };
 
 #endif // TIMERECEVER_H

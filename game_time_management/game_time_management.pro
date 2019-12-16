@@ -8,6 +8,7 @@ SOURCES += \
     code/settingwindow.cpp \
     code/timerecever.cpp \
     code/timewindows.cpp \
+    import/pricedurationcalc_v.cpp \
     main.cpp
 
 HEADERS += \
@@ -17,7 +18,8 @@ HEADERS += \
     code/screenblocker.h \
     code/settingwindow.h \
     code/timerecever.h \
-    code/timewindows.h
+    code/timewindows.h \
+    import/pricedurationcalc_v.h
 
 RESOURCES += \
     data/appRes.qrc

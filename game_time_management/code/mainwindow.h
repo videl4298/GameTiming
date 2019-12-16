@@ -10,6 +10,10 @@
 #include "code/settingwindow.h"
 #include "code/screenblocker.h"
 #include "code/timewindows.h"
+#include "code/timerecever.h"
+#include "custommerinfocontainer.h"
+#include <QTimer>
+#include <QTime>
 
 
 class MainWindow : public QWidget
@@ -34,12 +38,23 @@ private:
     // prevent user from closing app without permission
     void closeEvent(QCloseEvent *event) override;
 
+    QTimer *chrono;
+    QTime *times;
+
+    int actualValue = 0;
+
 
     // manage settings
     QSettings mySettings;
 
     passwordChecker* askPass;
 
+    TimeRecever *takeCommand;
+
+    QString GenetrateStat(custommerInfoContainer const& info);
+
+
+    const int pricePerHour;
 
 signals:
 
@@ -51,6 +66,12 @@ public slots:
     void handleSettingsButton();
 
     void showSettingWindow();
+
+    void resultHandler(custommerInfoContainer info);
+
+    void handleUnlimitedTime();
+
+    void handleLimitedTime();
 };
 
 

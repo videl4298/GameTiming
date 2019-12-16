@@ -2,6 +2,7 @@
 #define TIMEWINDOWS_H
 
 #include <QDialog>
+#include <QString>
 
 namespace Ui {
 class timeWindows;
@@ -15,8 +16,12 @@ public:
     explicit timeWindows(QWidget *parent = nullptr);
     ~timeWindows();
 
-private:
+public:
     Ui::timeWindows *ui;
+    void setTime(QString time);
+    void showStats(QString const& stat);
+    void setPriceLabel(int price);
+
 };
 
 #endif // TIMEWINDOWS_H

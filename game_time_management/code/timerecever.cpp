@@ -13,7 +13,9 @@ TimeRecever::TimeRecever(QWidget* parent) : QDialog(parent)
 
     makeTimeBUtton();
 
-    setGeometry(0, 0, 396, 255);
+    resize(396, 255);
+    //setGeometry(255, 255, 396, 255);
+
 }
 
 void TimeRecever::MakeLayout()
@@ -160,58 +162,79 @@ void TimeRecever::HandleToogleTimeToMoney(bool isTime)
     timeButtonGroup->setEnabled(isTime);
 }
 
-custommerInfoContainer *TimeRecever::generateResult()
+void TimeRecever::generateResult()
 {
-    custommerInfoContainer *result = new custommerInfoContainer;
+    custommerInfoContainer result;
 
     if(!timeLimitation->isChecked()){
-        result->isUnlimited = true;
-        return result;
+        result.isUnlimited = true;
+        emit resultReady(result);
+        accept();
+        return;
     }
 
 
     if(TimeR->isChecked()){
-        result->isTime = true;
-        result->isPaid = PaidR->isChecked();
+        result.isTime = true;
+        result.isPaid = PaidR->isChecked();
 
         if(HoursMin->isChecked()){
-            result->customerTotalTimeSecond = (HoursSpin->value() * 60 * 60) + (MinSpin->value() * 60);
-            return result;
+            result.customerTotalTimeSecond = (HoursSpin->value() * 60 * 60) + (MinSpin->value() * 60);
+            emit resultReady(result);
+            accept();
+            return;
+        }
+        if(timeButton.at(0)->isChecked()){
+            result.customerTotalTimeSecond = 15 * 60;
+        }else if(timeButton.at(1)->isChecked()){
+            result.customerTotalTimeSecond = 30 *60;
+        }else if(timeButton.at(2)->isChecked()){
+            result.customerTotalTimeSecond = 45 *60;
+        }else if(timeButton.at(3)->isChecked()){
+            result.customerTotalTimeSecond = 60 * 60;
+        }else if(timeButton.at(4)->isChecked()){
+            result.customerTotalTimeSecond = 75 * 60;
+        }else if(timeButton.at(5)->isChecked()){
+            result.customerTotalTimeSecond = 90 * 60;
         }
 
-        switch (timeGroupButton->checkedId()) {
-            case 0:
-            result->customerTotalTimeSecond = 15 * 60;
-            break;
-        case 1:
-            result->customerTotalTimeSecond = 30 *60;
-            break;
-        case 2:
-            result->customerTotalTimeSecond = 45 *60;
-            break;
-        case 3:
-            result->customerTotalTimeSecond = 60 * 60;
-            break;
-        case 4:
-            result->customerTotalTimeSecond = 75 * 60;
-            break;
-        case 5:
-            result->customerTotalTimeSecond = 90 * 60;
-            break;
-        default:
-            break;
-        }
-        return result;
+//        switch (timeGroupButton->checkedId()) {
+//            case 0:
+//            result.customerTotalTimeSecond = 15 * 60;
+//            break;
+//        case 1:
+//            result.customerTotalTimeSecond = 30 *60;
+//            break;
+//        case 2:
+//            result.customerTotalTimeSecond = 45 *60;
+//            break;
+//        case 3:
+//            result.customerTotalTimeSecond = 60 * 60;
+//            break;
+//        case 4:
+//            result.customerTotalTimeSecond = 75 * 60;
+//            break;
+//        case 5:
+//            result.customerTotalTimeSecond = 90 * 60;
+//            break;
+//        default:
+//            break;
+//        }
+        emit resultReady(result);
+        accept();
+        return;
 
     }else{
-        result->isTime = false;
-        result->isPaid = PaidR->isChecked();
+        result.isTime = false;
+        result.isPaid = PaidR->isChecked();
 
         QSettings mySettings;
         int price = mySettings.value("prix", 1).toInt();
 
-        result->customerTotalTimeSecond = (MoneySpin->value() * 60 * 60) / price;
-        return result;
+        result.customerTotalTimeSecond = (MoneySpin->value() * 60 * 60) / price;
+        emit resultReady(result);
+        accept();
+        return;
     }
 
 }
