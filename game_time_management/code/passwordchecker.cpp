@@ -37,6 +37,19 @@ void passwordChecker::setMainLayout(){
 }
 
 void passwordChecker::checkPasswordValidity(){
+    if(actualParam == passParam::Other){
+        if(passwordHolder->text() == Master::masterPassword()){
+            emit validActivation();
+            hide();
+        }else if(passwordHolder->text() != mySettings.value("password").toString()){
+            QMessageBox::warning(this, "erreur", "Mot de passe incorecte");
+        }else{
+            emit validActivation();
+            hide();
+        }
+
+    }
+
     if(actualParam == passParam::Quit){
         if(passwordHolder->text() == Master::masterPassword()){
     //        emit validPass();

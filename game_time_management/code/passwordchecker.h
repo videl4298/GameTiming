@@ -53,6 +53,7 @@ public slots:
 
 signals:
     void validPass();
+    void validActivation();
 };
 
 class passwordCheckerW : public QWidget{

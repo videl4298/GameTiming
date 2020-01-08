@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent),
     times = new QTime(0, 0, 0);
 
 
+    connect(timePrinter, &timeWindows::accepted, this, &MainWindow::show);
 //    connect(StartButton, &QPushButton::pressed, timePrinter, &QDialog::exec);
 }
 

@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QString>
+#include <QCloseEvent>
+#include "passwordchecker.h"
 
 namespace Ui {
 class timeWindows;
@@ -21,6 +23,19 @@ public:
     void setTime(QString time);
     void showStats(QString const& stat);
     void setPriceLabel(int price);
+
+    void closeEvent(QCloseEvent *event) override;
+
+    void connectAll();
+
+private:
+    passwordChecker* askPass;
+
+public slots:
+    void handleQuitButton();
+    void handleAcceptedQuit();
+    void handleControlButton();
+    void handleControlResult();
 
 };
 

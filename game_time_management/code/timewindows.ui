@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>354</width>
+    <width>356</width>
     <height>469</height>
    </rect>
   </property>
@@ -48,9 +48,6 @@
         <string>Activer</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="passwordLine"/>
      </item>
     </layout>
    </item>
